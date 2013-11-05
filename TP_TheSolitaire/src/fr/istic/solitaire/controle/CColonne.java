@@ -10,6 +10,7 @@ import solitaire.application.Usine;
 public class CColonne extends Colonne{
 
 	PColonne presentation;
+	CCarte carteDragger;
 	
 	public CColonne(String nom, Usine usine) {
 		super(nom, usine);
@@ -20,7 +21,25 @@ public class CColonne extends Colonne{
 		presentation.activerRetournerCarte();
 	}
 	
+	public void p2c_debutDragNDrop(CCarte cc){
+		try {
+			if(cc == getSommet()){
+				carteDragger = cc;
+				depiler();
+				presentation.c2p_debutDragNDrop_OK(cc);
+			}else{
+				presentation.c2p_debutDragNDrop_NonOK();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void p2c_endDragNDrop(boolean success){
+		if(!success){
+			empiler(carteDragger);
+		}
+	}
 
 	
 	

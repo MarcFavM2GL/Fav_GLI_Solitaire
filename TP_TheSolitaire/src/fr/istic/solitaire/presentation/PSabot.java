@@ -2,6 +2,7 @@ package fr.istic.solitaire.presentation;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Window;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
@@ -11,6 +12,7 @@ import java.awt.dnd.DragSourceDragEvent;
 import java.awt.dnd.DragSourceDropEvent;
 import java.awt.dnd.DragSourceEvent;
 import java.awt.dnd.DragSourceListener;
+import java.awt.dnd.DragSourceMotionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,7 +23,7 @@ import fr.istic.solitaire.controle.CSabot;
 import fr.istic.solitaire.controle.CTasDeCartes;
 
 
-public class PSabot extends JPanel /*implements DragGestureListener*/{
+public class PSabot extends JPanel{
 	
 	private PTasDeCartes tasCartesCachees, tasCartesVisibles;
 	private CSabot monControle;
@@ -30,8 +32,11 @@ public class PSabot extends JPanel /*implements DragGestureListener*/{
 	
 	DragSource ds;
 	MyDragSourceListener myDsl;
+	MyDragSourceMotionListener myDsMl;
 	DragGestureEvent theInitialEvent;
 	PCarte selection;
+	Window valise = null;
+	
 	
 	public PSabot(CSabot controle, PTasDeCartes tasCache, PTasDeCartes tasVisible) {
 
@@ -47,9 +52,12 @@ public class PSabot extends JPanel /*implements DragGestureListener*/{
 		ds.createDefaultDragGestureRecognizer(this.tasCartesVisibles, 
 												DnDConstants.ACTION_MOVE, 
 												new MyDragGestureListener());
+		myDsMl = new MyDragSourceMotionListener();
+		ds.addDragSourceMotionListener(myDsMl);
 		
 		
 		tasCartesCachees.setBackground(Color.gray);
+		tasCartesVisibles.setBackground(Color.YELLOW);
 
 		add(tasCartesCachees,0);
 		add(tasCartesVisibles,0);
@@ -57,6 +65,14 @@ public class PSabot extends JPanel /*implements DragGestureListener*/{
 		tasCartesVisibles.setLocation(110, 10);;
 		tasCartesCachees.setLocation(10, 10);
 		System.out.println("haut : " + tasCache.getHeight());
+		
+		/*
+		tasCartesCachees.setSize(100, 110); 
+		tasCartesCachees.setPreferredSize(tasCartesCachees.getSize());
+		tasCartesVisibles.setSize(950, 110);
+		tasCartesVisibles.setPreferredSize(tasCartesVisibles.getSize());
+		*/
+		
 		setSize (1080,140);
 		setPreferredSize(getSize());
 		
@@ -88,12 +104,27 @@ public class PSabot extends JPanel /*implements DragGestureListener*/{
 	}
 	
 	public void c2p_debutDragNDrop_OK(CCarte cc){
-		Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
-		ds.startDrag(theInitialEvent, curseur, 
+		//Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
+		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
 						cc.getPresentation(), 
 						myDsl);
+		valise = new Window((Window) getRootPane().getParent());
+		valise.add(cc.getPresentation());
+		valise.pack();valise.setVisible(true);
+		validate();
+		repaint();
+		
 	}
 
+	class MyDragSourceMotionListener implements DragSourceMotionListener{
+
+		@Override
+		public void dragMouseMoved(DragSourceDragEvent dsde) {	
+			valise.setLocation(1 + dsde.getX(), 1 + dsde.getY());
+			tasCartesVisibles.repaint();
+		}
+	}
+	
 	
 	class MyDragGestureListener implements DragGestureListener{
 
@@ -121,12 +152,17 @@ public class PSabot extends JPanel /*implements DragGestureListener*/{
 		@Override
 		public void dragDropEnd(DragSourceDropEvent dsde) {
 			monControle.p2c_endDragNDrop(dsde.getDropSuccess());
+			valise.setVisible(false);
+			validate();
+			repaint();
 		}
 
 		@Override
 		public void dragEnter(DragSourceDragEvent dsde) {}
 		@Override
-		public void dragExit(DragSourceEvent dse) {}
+		public void dragExit(DragSourceEvent dse) {
+			repaint();
+		}
 		@Override
 		public void dragOver(DragSourceDragEvent dsde) {}
 		@Override

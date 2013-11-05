@@ -13,7 +13,7 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 	
 	public CTasDeCartesAlternees(String nom, Usine factory) {
 		super(nom, factory);
-		presentation = new PTasDeCartesAlternees();
+		presentation = new PTasDeCartesAlternees(this);
 		
 	}
 
@@ -38,4 +38,27 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 		super.depiler();
 		presentation.depiler(((CCarte)s).getPresentation());
 		}
+
+	public void p2c_dragEnter(CCarte cc){
+		if(isEmpilable(cc) || isVide()){
+			presentation.c2p_showEmpilable();
+		}else{
+			presentation.c2p_showNonEmpilable();
+		}
+	}
+
+	public void p2c_dragExit(CCarte cc){
+		presentation.c2p_showNeutre();
+	}
+	
+	public void p2c_drop(CCarte cc){
+		if(isEmpilable(cc) || isVide()){
+			empiler(cc);
+			presentation.c2p_dropOK();
+		}else{
+			presentation.c2p_dropNonOK();
+		}
+		presentation.c2p_showNeutre();
+	}
+
 }

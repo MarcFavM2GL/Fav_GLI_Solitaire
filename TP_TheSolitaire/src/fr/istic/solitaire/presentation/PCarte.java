@@ -18,7 +18,7 @@ import fr.istic.solitaire.controle.CCarte;
 /**
 * Composant Présentation d'une carte
 */
-public class PCarte extends JPanel implements Transferable, Serializable {
+public class PCarte extends JPanel implements Transferable/*, Serializable*/ {
 
   protected CCarte controle ;		// contrôleur associé
   protected JLabel face, dos ;
