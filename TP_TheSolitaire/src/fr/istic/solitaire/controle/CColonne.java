@@ -21,6 +21,7 @@ public class CColonne extends Colonne{
 		presentation.activerRetournerCarte();
 	}
 	
+	
 	public void p2c_debutDragNDrop(CCarte cc){
 		try {
 			if(cc == getSommet()){
@@ -38,19 +39,18 @@ public class CColonne extends Colonne{
 	public void p2c_endDragNDrop(boolean success){
 		if(!success){
 			empiler(carteDragger);
+		}else{
+			if(isCarteRetournable()){
+				presentation.activerRetournerCarteSurTasVis();
+			}
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public void retournerCarte() throws Exception {
+		super.retournerCarte();
+		presentation.desactiverRetournerCarteSurTasVis();
+	}
 	
 	public PColonne getPresentation(){
 		return presentation;

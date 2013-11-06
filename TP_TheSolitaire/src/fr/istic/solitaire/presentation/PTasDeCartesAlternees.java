@@ -24,9 +24,10 @@ public class PTasDeCartesAlternees extends PTasDeCartes implements IPTasDeCartes
 		monControle = ctrl;
 		setLayout (null) ;
 		setBackground (Color.lightGray) ;
-		setOpaque (true);
-		setSize (140,300);
-		setPreferredSize (getSize ()) ;
+		
+		setOpaque (false);
+		//setSize (PCarte.largeur + 20,PCarte.hauteur + 20);
+		//setPreferredSize (getSize ()) ;
 		dropTarget = new DropTarget(this, new MyDropTargetListener());
 	}
 	
@@ -69,7 +70,7 @@ public class PTasDeCartesAlternees extends PTasDeCartes implements IPTasDeCartes
 		
 	}
 	
-	public void c2p_showEmpilable(){
+	/*public void c2p_showEmpilable(){
 		setBackground (Color.green) ;
 	}
 	public void c2p_showNonEmpilable(){
@@ -77,7 +78,7 @@ public class PTasDeCartesAlternees extends PTasDeCartes implements IPTasDeCartes
 	}
 	public void c2p_showNeutre(){
 		setBackground (Color.lightGray) ;
-	}
+	}*/
 	public void c2p_dropOK(){
 		theFinalEvent.acceptDrop(DnDConstants.ACTION_MOVE);
 		theFinalEvent.getDropTargetContext().dropComplete(true);

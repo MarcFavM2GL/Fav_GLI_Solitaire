@@ -57,19 +57,30 @@ public class PColonne extends JPanel{
 		myDsMl = new MyDragSourceMotionListener();
 		ds.addDragSourceMotionListener(myDsMl);
 		
-		add(tasCartesCachees,0);
+		add(tasCartesCachees);
 		add(tasCartesVisibles,0);
+		tasCartesCachees.setLocation(5, 5);
 		
 		tasCartesCachees.setDxDy(0, 10);
 		tasCartesVisibles.setDxDy(0, 25);
 		
-		tasCartesVisibles.setLocation(10, 200);;
-		tasCartesCachees.setLocation(10, 10);
-		System.out.println("haut col : " + tasCache.getHeight());
-		setSize (120,400);
-		setPreferredSize(getSize());
 		
+		
+		setSize (100,350);
+		setPreferredSize(getSize());
 		setVisible(true);
+		repaint();
+	}
+	
+	public void activerRetournerCarteSurTasVis(){
+		if(retCarteListen == null){
+			retCarteListen = new RetournerCarteColonneListener(monControle);
+		}
+		tasCartesVisibles.addMouseListener(retCarteListen);
+	}
+	
+	public void desactiverRetournerCarteSurTasVis(){
+		tasCartesVisibles.removeMouseListener(retCarteListen);
 	}
 	
 	public void activerRetournerCarte(){
@@ -100,6 +111,22 @@ public class PColonne extends JPanel{
 		
 	}
 
+	@Override
+	public void repaint() {
+		int decalYTasVisible = 0;
+		if(tasCartesCachees != null){
+			
+			decalYTasVisible = tasCartesCachees.nbCarte * tasCartesCachees.decalY;
+			decalYTasVisible= 10 + decalYTasVisible;
+			tasCartesVisibles.setLocation(5, decalYTasVisible);
+			
+			
+		}
+		
+		super.repaint();
+		
+	};
+	
 	class MyDragSourceMotionListener implements DragSourceMotionListener{
 
 		@Override
@@ -108,7 +135,6 @@ public class PColonne extends JPanel{
 			tasCartesVisibles.repaint();
 		}
 	}
-	
 	
 	class MyDragGestureListener implements DragGestureListener{
 
@@ -153,12 +179,6 @@ public class PColonne extends JPanel{
 		public void dropActionChanged(DragSourceDragEvent dsde) {}
 	}
 
-
-	
-	
-	
-	
-	
 	class RetournerCarteColonneListener implements MouseListener{
 
 		CColonne controle;
@@ -174,6 +194,7 @@ public class PColonne extends JPanel{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			
 		}
 
 		@Override

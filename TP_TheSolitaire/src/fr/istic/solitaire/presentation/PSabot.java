@@ -64,7 +64,7 @@ public class PSabot extends JPanel{
 		tasCartesVisibles.setDxDy(20, 0);
 		tasCartesVisibles.setLocation(110, 10);;
 		tasCartesCachees.setLocation(10, 10);
-		System.out.println("haut : " + tasCache.getHeight());
+		//System.out.println("haut : " + tasCache.getHeight());
 		
 		/*
 		tasCartesCachees.setSize(100, 110); 
@@ -135,15 +135,16 @@ public class PSabot extends JPanel{
 			
 			PCarte pc;
 			CCarte cc = null;
-			
-			try{
-				pc = (PCarte) tasCartesVisibles.getComponentAt(evt.getDragOrigin());
-				cc = pc.getControle();
-			}catch(Exception e){
-				
-			}
-			System.out.println(cc);
-			monControle.p2c_debutDragNDrop(cc);			
+			if(tasCartesVisibles.nbCarte > 0){
+				try{
+					pc = (PCarte) tasCartesVisibles.getComponentAt(evt.getDragOrigin());
+					cc = pc.getControle();
+				}catch(Exception e){
+					
+				}
+				System.out.println(cc);
+				monControle.p2c_debutDragNDrop(cc);	
+			}		
 		}
 	}
 	

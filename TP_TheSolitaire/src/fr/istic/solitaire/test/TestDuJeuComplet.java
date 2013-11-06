@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import solitaire.application.Solitaire;
 import solitaire.application.Usine;
 import fr.istic.solitaire.controle.CCarte;
 import fr.istic.solitaire.controle.CColonne;
