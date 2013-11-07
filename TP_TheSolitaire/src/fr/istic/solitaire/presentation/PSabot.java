@@ -36,7 +36,7 @@ public class PSabot extends JPanel{
 	DragGestureEvent theInitialEvent;
 	PCarte selection;
 	Window valise = null;
-	
+
 	
 	public PSabot(CSabot controle, PTasDeCartes tasCache, PTasDeCartes tasVisible) {
 
@@ -168,8 +168,8 @@ public class PSabot extends JPanel{
 		public void dragOver(DragSourceDragEvent dsde) {}
 		@Override
 		public void dropActionChanged(DragSourceDragEvent dsde) {}
+		}
 	}
-}
 
 class RetournerTasSabotListener implements MouseListener{
 

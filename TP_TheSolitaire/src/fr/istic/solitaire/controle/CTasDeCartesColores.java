@@ -9,6 +9,7 @@ import solitaire.application.TasDeCartesColorees;
 public class CTasDeCartesColores extends TasDeCartesColorees {
 
 	private PTasDeCartesColores presentation;
+	CCarte carteDragger;
 	
 	public CTasDeCartesColores(String nom, int couleur, Usine factory) {
 		super(nom, couleur, factory);
@@ -55,5 +56,24 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 		presentation.c2p_showNeutre();
 	}
 
+	public void p2c_debutDragNDrop(CCarte cc){
+		try {
+			if(cc == getSommet()){
+				carteDragger = cc;
+				depiler();
+				presentation.c2p_debutDragNDrop_OK(cc);
+			}else{
+				presentation.c2p_debutDragNDrop_NonOK();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void p2c_endDragNDrop(boolean success){
+		if(!success){
+			empiler(carteDragger);
+		}
+	}
 
 }
