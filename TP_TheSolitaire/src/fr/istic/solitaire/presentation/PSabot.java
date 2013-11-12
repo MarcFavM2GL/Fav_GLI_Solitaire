@@ -73,11 +73,15 @@ public class PSabot extends JPanel{
 		tasCartesVisibles.setPreferredSize(tasCartesVisibles.getSize());
 		*/
 		
-		setSize (1080,140);
+		setSize (250,140);
 		setPreferredSize(getSize());
 		
 		setVisible(true);
 		
+	}
+	
+	public void initDecalageTasVisible(){
+		tasCartesVisibles.initDecalAffichageCarte();
 	}
 	
 	public void activerRetournerCarte(){
@@ -169,49 +173,50 @@ public class PSabot extends JPanel{
 		@Override
 		public void dropActionChanged(DragSourceDragEvent dsde) {}
 		}
-	}
+	
+	class RetournerTasSabotListener implements MouseListener{
 
-class RetournerTasSabotListener implements MouseListener{
-
-	CSabot controle;
-	public RetournerTasSabotListener(CSabot monControle) {
-		controle = monControle;
-	}
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		controle.retourner();
+		CSabot controle;
+		public RetournerTasSabotListener(CSabot monControle) {
+			controle = monControle;
+		}
 		
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		controle.retourner();
+		}
+		
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+		@Override
+		public void mouseExited(MouseEvent e) {}
+		@Override
+		public void mousePressed(MouseEvent e) {}
+		@Override
+		public void mouseReleased(MouseEvent e) {}
 	}
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-	@Override
-	public void mouseExited(MouseEvent e) {}
-	@Override
-	public void mousePressed(MouseEvent e) {}
-	@Override
-	public void mouseReleased(MouseEvent e) {}
+	
+	class RetournerCarteSabotListener implements MouseListener{
+
+		CSabot controle;
+		public RetournerCarteSabotListener(CSabot monControle) {
+			controle = monControle;
+		}
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			controle.retournerCarte();
+		}
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+		@Override
+		public void mouseExited(MouseEvent e) {}
+		@Override
+		public void mousePressed(MouseEvent e) {}
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+	}
+
 }
-
-class RetournerCarteSabotListener implements MouseListener{
-
-	CSabot controle;
-	public RetournerCarteSabotListener(CSabot monControle) {
-		controle = monControle;
-	}
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		controle.retournerCarte();
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-	@Override
-	public void mouseExited(MouseEvent e) {}
-	@Override
-	public void mousePressed(MouseEvent e) {}
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-}
-
 
 
 

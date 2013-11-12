@@ -23,7 +23,10 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes{
 	protected int decalX;
 	protected int decalY;
 	protected int nbCarte;
-	
+	boolean premiereCarteAffichee;
+	protected int positionXCartePrec;
+	protected int positionYCartePrec;
+
 	protected ArrayList<PCarte> lstCarte;
 	
 	final Border BORD_NEUTRE = BorderFactory.createLineBorder(Color.GRAY, 3);
@@ -36,15 +39,19 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes{
 	
 	public PTasDeCartes() {
 		super();
-
+		
 		nbCarte = 0;
+		premiereCarteAffichee = true;
+		positionXCartePrec = 5;
+		positionYCartePrec = 10;
+		
 		setLayout (null) ;
 		setBackground (Color.lightGray) ;
 		setOpaque (true);
 		setSize (PCarte.largeur + 10,PCarte.hauteur + 20);
 		setPreferredSize (getSize ()) ;
 		setBorder(BORD_SANS);
-		
+		lstCarte = new ArrayList<PCarte>();
 	}
 	
 	public void depiler(PCarte pc){
@@ -52,9 +59,12 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes{
 		int haut;
 		this.remove(pc);
 		nbCarte = nbCarte - 1;
+		lstCarte.remove(lstCarte.size() - 1);
 		
-		larg = Math.max((pc.getWidth() + (nbCarte - 1)*decalX) + 10, PCarte.largeur + 10);
-		haut = Math.max((pc.getHeight() + (nbCarte - 1)*decalY + 20), PCarte.hauteur + 20);
+		positionXCartePrec = positionXCartePrec - decalX;
+		positionYCartePrec = positionYCartePrec - decalY;
+		larg = Math.max((pc.getWidth() + positionXCartePrec + 10), PCarte.largeur + 10);
+		haut = Math.max((pc.getHeight() + positionYCartePrec), PCarte.hauteur + 20);
 		
 		setSize(larg, haut);
 		setPreferredSize (getSize ()) ;
@@ -66,16 +76,36 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes{
 		int haut;
 		
 		this.add(pc, 0);
+		lstCarte.add(pc);
+		
 		nbCarte = nbCarte + 1;
 		
-		larg = Math.max((pc.getWidth() + (nbCarte - 1)*decalX + 10), PCarte.largeur + 10);
-		haut = Math.max((pc.getHeight() + (nbCarte - 1)*decalY + 20), PCarte.hauteur + 20);
+		if(!premiereCarteAffichee){
+			positionXCartePrec = positionXCartePrec + decalX;
+			positionYCartePrec = positionYCartePrec + decalY;
+		}
+		premiereCarteAffichee = false;
 		
-		pc.setLocation(decalX * (nbCarte - 1) + 5, decalY * (nbCarte - 1) + 15);
+		larg = Math.max((pc.getWidth() + positionXCartePrec + 10), PCarte.largeur + 10);
+		haut = Math.max((pc.getHeight() + positionYCartePrec), PCarte.hauteur + 20);
+		
+		pc.setLocation(positionXCartePrec, positionYCartePrec);
+		pc.setVisible(true);
 		setSize(larg, haut);
 		setPreferredSize (getSize ()) ;
 		repaint();
+	}
+	
+	public void initDecalAffichageCarte(){	
+		int cmpt = lstCarte.size() - 1;
+		positionXCartePrec = 5;
+		positionYCartePrec = 10;
+		premiereCarteAffichee = true;
 		
+		for(int i=cmpt; i>=0; i--){
+			lstCarte.get(i).setVisible(false);
+		}
+		repaint();
 	}
 	
 	public void setDxDy(int x, int y){

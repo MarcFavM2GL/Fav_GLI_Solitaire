@@ -26,10 +26,13 @@ public class CSabot extends Sabot{
 	}
 	
 	public void retournerCarte(){
-		try {
+		
+		try{
+			presentation.initDecalageTasVisible();
 			super.retournerCarte();
 			super.retournerCarte();
 			super.retournerCarte();
+			
 		} catch (Exception e) {
 			System.err.println("retournerCarte dans CSabot impossible !!!");
 			e.printStackTrace();
