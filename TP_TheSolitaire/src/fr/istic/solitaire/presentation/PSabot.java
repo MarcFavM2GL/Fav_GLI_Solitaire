@@ -107,13 +107,13 @@ public class PSabot extends JPanel{
 		
 	}
 	
-	public void c2p_debutDragNDrop_OK(CCarte cc){
+	public void c2p_debutDragNDrop_OK(CTasDeCartes ctc){
 		//Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
-						cc.getPresentation(), 
+						ctc.getPresentation(), 
 						myDsl);
 		valise = new Window((Window) getRootPane().getParent());
-		valise.add(cc.getPresentation());
+		valise.add(ctc.getPresentation());
 		valise.pack();valise.setVisible(true);
 		validate();
 		repaint();
@@ -124,7 +124,7 @@ public class PSabot extends JPanel{
 
 		@Override
 		public void dragMouseMoved(DragSourceDragEvent dsde) {	
-			valise.setLocation(1 + dsde.getX(), 1 + dsde.getY());
+			valise.setLocation(1 + dsde.getX() - (valise.getWidth() / 2), 1 + dsde.getY() - 10);
 			tasCartesVisibles.repaint();
 		}
 	}

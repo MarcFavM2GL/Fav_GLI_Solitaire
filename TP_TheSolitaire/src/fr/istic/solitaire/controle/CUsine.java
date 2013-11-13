@@ -25,6 +25,10 @@ public class CUsine extends Usine{
 		return new CTasDeCartes(name, factory);	
 	}
 	
+	public TasDeCartes newTasDeCartes(String name, Usine factory, boolean avecCtrl){
+		return new CTasDeCartes(name, factory, avecCtrl);	
+	}
+	
 	public TasDeCartesAlternees newTasDeCartesAlternees(String name, Usine factory){
 		return new CTasDeCartesAlternees(name, factory);
 	}

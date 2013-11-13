@@ -22,6 +22,7 @@ import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
 import fr.istic.solitaire.controle.CCarte;
+import fr.istic.solitaire.controle.CTasDeCartes;
 import fr.istic.solitaire.controle.CTasDeCartesColores;
 import fr.istic.solitaire.presentation.PSabot.MyDragGestureListener;
 import fr.istic.solitaire.presentation.PSabot.MyDragSourceListener;
@@ -64,14 +65,16 @@ public class PTasDeCartesColores extends PTasDeCartes implements IPTasDeCartes{
 	class MyDropTargetListener implements DropTargetListener{
 
 		PCarte pc;
+		PTasDeCartes ptc;
 		//DropTargetDropEvent theFinalEvent;
 		
 		@Override
 		public void dragEnter(DropTargetDragEvent dtde) {
 			
 			try {
-				pc = (PCarte) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
-				monControle.p2c_dragEnter(pc.getControle());
+				//pc = (PCarte) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
+				ptc = (PTasDeCartes) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
+				monControle.p2c_dragEnter(ptc.getControle());
 			} catch (UnsupportedFlavorException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -83,7 +86,7 @@ public class PTasDeCartesColores extends PTasDeCartes implements IPTasDeCartes{
 
 		@Override
 		public void dragExit(DropTargetEvent dte) {
-			monControle.p2c_dragExit(pc.getControle());
+			monControle.p2c_dragExit();
 		}
 
 		@Override
@@ -92,7 +95,7 @@ public class PTasDeCartesColores extends PTasDeCartes implements IPTasDeCartes{
 		@Override
 		public void drop(DropTargetDropEvent dtde) {
 			theFinalEvent = dtde;
-			monControle.p2c_drop(pc.getControle());
+			monControle.p2c_drop(ptc.getControle());
 		}
 
 		@Override

@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import fr.istic.solitaire.controle.CCarte;
 import fr.istic.solitaire.controle.CColonne;
 import fr.istic.solitaire.controle.CSabot;
+import fr.istic.solitaire.controle.CTasDeCartes;
 import fr.istic.solitaire.presentation.PSabot.MyDragGestureListener;
 import fr.istic.solitaire.presentation.PSabot.MyDragSourceListener;
 import fr.istic.solitaire.presentation.PSabot.MyDragSourceMotionListener;
@@ -98,13 +99,14 @@ public class PColonne extends JPanel{
 		
 	}
 	
-	public void c2p_debutDragNDrop_OK(CCarte cc){
+	public void c2p_debutDragNDrop_OK(CTasDeCartes ctc){
+		
 		
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
-						cc.getPresentation(), 
+						ctc.getPresentation(), 
 						myDsl);
 		valise = new Window((Window) getRootPane().getParent());
-		valise.add(cc.getPresentation());
+		valise.add(ctc.getPresentation());
 		valise.pack();valise.setVisible(true);
 		validate();
 		repaint();
@@ -131,7 +133,7 @@ public class PColonne extends JPanel{
 
 		@Override
 		public void dragMouseMoved(DragSourceDragEvent dsde) {	
-			valise.setLocation(1 + dsde.getX(), 1 + dsde.getY());
+			valise.setLocation(1 + dsde.getX() - (valise.getWidth() / 2), 1 + dsde.getY() - 10);
 			tasCartesVisibles.repaint();
 		}
 	}
@@ -145,10 +147,13 @@ public class PColonne extends JPanel{
 			
 			PCarte pc;
 			CCarte cc = null;
+			//PTasDeCartes ptc;
+			//CTasDeCartes ctc;
 			
 			try{
 				pc = (PCarte) tasCartesVisibles.getComponentAt(evt.getDragOrigin());
 				cc = pc.getControle();
+				
 			}catch(Exception e){
 				
 			}

@@ -12,7 +12,19 @@ public class CTasDeCartes extends TasDeCartes {
 	public CTasDeCartes(String nom, Usine factory) {
 		super(nom, factory);
 		presentation = new PTasDeCartes();
+		
 	}
+	
+	public CTasDeCartes(String nom, Usine factory, boolean avecCtrl) {
+		super(nom, factory);
+		if(avecCtrl){
+			presentation = new PTasDeCartes(this);
+		}else{
+			presentation = new PTasDeCartes();
+		}
+	}
+	
+	
 	
 	public PTasDeCartes getPresentation(){
 		return presentation;
@@ -39,6 +51,11 @@ public class CTasDeCartes extends TasDeCartes {
 		s = getSommet();
 		super.depiler();
 		presentation.depiler(((CCarte)s).getPresentation());
+	}
+	
+	public void configTasVisuDuDnD(){
+		presentation.setMarges(0, 0);
+		presentation.setDxDy(0, 25);
 	}
 
 }

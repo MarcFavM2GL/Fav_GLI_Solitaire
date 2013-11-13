@@ -39,21 +39,23 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 		presentation.depiler(((CCarte)s).getPresentation());
 		}
 
-	public void p2c_dragEnter(CCarte cc){
-		if(isEmpilable(cc) || isVide()){
+	public void p2c_dragEnter(CTasDeCartes ctc){
+		
+		
+		if(isEmpilable(ctc) || isVide()){
 			presentation.c2p_showEmpilable();
 		}else{
 			presentation.c2p_showNonEmpilable();
 		}
 	}
 
-	public void p2c_dragExit(CCarte cc){
+	public void p2c_dragExit(CTasDeCartes ctc){
 		presentation.c2p_showNeutre();
 	}
 	
-	public void p2c_drop(CCarte cc){
-		if(isEmpilable(cc) || isVide()){
-			empiler(cc);
+	public void p2c_drop(CTasDeCartes ctc){
+		if(isEmpilable(ctc) || isVide()){
+			empiler(ctc);
 			presentation.c2p_dropOK();
 		}else{
 			presentation.c2p_dropNonOK();

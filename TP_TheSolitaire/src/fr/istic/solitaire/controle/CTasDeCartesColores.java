@@ -34,24 +34,42 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 		presentation.depiler(((CCarte)s).getPresentation());
 	}
 
-	public void p2c_dragEnter(CCarte cc){
-		if(isEmpilable(cc)){
-			presentation.c2p_showEmpilable();
-		}else{
-			presentation.c2p_showNonEmpilable();
+	public void p2c_dragEnter(CTasDeCartes ctc){
+		
+		try {
+			if(ctc.getNombre() != 1){
+				presentation.c2p_showNonEmpilable();
+			}else{
+				if(isEmpilable(ctc.getSommet())){
+					presentation.c2p_showEmpilable();
+				}else{
+					presentation.c2p_showNonEmpilable();
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Erreur dans CTasDeCartesColores --- p2c_dragEnter");
 		}
 	}
+	
 
-	public void p2c_dragExit(CCarte cc){
+	public void p2c_dragExit(){
 		presentation.c2p_showNeutre();
 	}
 	
-	public void p2c_drop(CCarte cc){
-		if(isEmpilable(cc)){
-			empiler(cc);
-			presentation.c2p_dropOK();
-		}else{
-			presentation.c2p_dropNonOK();
+	public void p2c_drop(CTasDeCartes ctc){
+		try {
+			if(ctc.getNombre() != 1){
+				presentation.c2p_dropNonOK();
+			}else{
+				if(isEmpilable(ctc.getSommet())){
+					empiler(ctc.getSommet());
+					presentation.c2p_dropOK();
+				}else{
+					presentation.c2p_dropNonOK();
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Erreur dans CTasDeCartesColores --- p2c_drop");
 		}
 		presentation.c2p_showNeutre();
 	}
