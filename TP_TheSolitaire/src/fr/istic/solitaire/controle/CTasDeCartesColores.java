@@ -10,6 +10,7 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 
 	private PTasDeCartesColores presentation;
 	CCarte carteDragger;
+	CTasDeCartes tasDragger;
 	
 	public CTasDeCartesColores(String nom, int couleur, Usine factory) {
 		super(nom, couleur, factory);
@@ -75,11 +76,16 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 	}
 
 	public void p2c_debutDragNDrop(CCarte cc){
+		
 		try {
+			tasDragger = new CTasDeCartes("tmp", new CUsine(), true);
+			tasDragger.configTasVisuDuDnD();
+			
 			if(cc == getSommet()){
 				carteDragger = cc;
 				depiler();
-				presentation.c2p_debutDragNDrop_OK(cc);
+				tasDragger.empiler(cc);
+				presentation.c2p_debutDragNDrop_OK(tasDragger);
 			}else{
 				presentation.c2p_debutDragNDrop_NonOK();
 			}

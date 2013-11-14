@@ -1,0 +1,5 @@
+ATTENTION !!!
+
+Il faut copier le répertoire 'ressources'
+dans le répertoire 'bin' pour que le jeu
+fonctionne correctement !!!

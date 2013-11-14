@@ -56,8 +56,8 @@ public class PSabot extends JPanel{
 		ds.addDragSourceMotionListener(myDsMl);
 		
 		
-		tasCartesCachees.setBackground(Color.gray);
-		tasCartesVisibles.setBackground(Color.YELLOW);
+		//tasCartesCachees.setBackground(Color.gray);
+		//tasCartesVisibles.setBackground(Color.YELLOW);
 
 		add(tasCartesCachees,0);
 		add(tasCartesVisibles,0);
@@ -73,7 +73,7 @@ public class PSabot extends JPanel{
 		tasCartesVisibles.setPreferredSize(tasCartesVisibles.getSize());
 		*/
 		
-		setSize (250,140);
+		setSize (250,150);
 		setPreferredSize(getSize());
 		
 		setVisible(true);

@@ -42,13 +42,15 @@ public class PColonne extends JPanel{
 		
 		//setLayout(new GridLayout(2, 1));
 		setLayout(null);
-		setBackground(new Color(250, 210, 160));
+		setBackground(new Color(143, 143, 195));
+		//setBackground(getParent().getBackground());
 		setOpaque (true);
 		monControle = controle;
 		
 		tasCartesCachees = tasCache;
 		tasCartesVisibles = tasVisible;	
-		tasCartesCachees.setBackground(new Color(245, 170, 60));
+		tasCartesCachees.setBackground(new Color(143, 143, 195));
+		//tasCartesCachees.setBackground(getParent().getBackground());
 		
 		myDsl = new MyDragSourceListener();
 		ds = new DragSource();
@@ -67,7 +69,7 @@ public class PColonne extends JPanel{
 		
 		
 		
-		setSize (100,350);
+		setSize (100,400);
 		setPreferredSize(getSize());
 		setVisible(true);
 		repaint();

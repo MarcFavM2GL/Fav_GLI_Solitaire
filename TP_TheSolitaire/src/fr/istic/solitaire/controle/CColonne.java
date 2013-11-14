@@ -55,7 +55,6 @@ public class CColonne extends Colonne{
 	
 	public void p2c_endDragNDrop(boolean success){
 		if(!success){
-			//empiler(carteDragger);
 			empiler(tasDragger);
 		}else{
 			if(isCarteRetournable()){

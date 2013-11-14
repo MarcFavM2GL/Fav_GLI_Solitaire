@@ -124,13 +124,13 @@ public class PTasDeCartesColores extends PTasDeCartes implements IPTasDeCartes{
 		
 	}
 	
-	public void c2p_debutDragNDrop_OK(CCarte cc){
+	public void c2p_debutDragNDrop_OK(CTasDeCartes ctc){
 		//Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
-						cc.getPresentation(), 
+						ctc.getPresentation(), 
 						myDsl);
 		valise = new Window((Window) getRootPane().getParent());
-		valise.add(cc.getPresentation());
+		valise.add(ctc.getPresentation());
 		valise.pack();valise.setVisible(true);
 		validate();
 		repaint();

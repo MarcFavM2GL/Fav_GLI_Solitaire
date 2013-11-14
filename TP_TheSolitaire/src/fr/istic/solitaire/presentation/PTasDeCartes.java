@@ -49,7 +49,7 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 		
 		nbCarte = 0;
 		premiereCarteAffichee = true;
-		setMarges(5, 10);
+		setMarges(5, 15);
 		
 		setLayout (null) ;
 		setBackground (Color.lightGray) ;
@@ -91,8 +91,8 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 		positionXCartePrec = positionXCartePrec - decalX;
 		positionYCartePrec = positionYCartePrec - decalY;
 		
-		larg = Math.max((pc.getWidth() + positionXCartePrec + (margeX * 2)), PCarte.largeur + (margeX * 2));
-		haut = Math.max((pc.getHeight() + positionYCartePrec + (margeY * 2)), PCarte.hauteur + (margeY * 2));
+		larg = Math.max((pc.getWidth() + positionXCartePrec + margeX), PCarte.largeur + margeX);
+		haut = Math.max((pc.getHeight() + positionYCartePrec + margeY), PCarte.hauteur + margeY);
 		
 		setSize(larg, haut);
 		setPreferredSize (getSize ()) ;
@@ -117,8 +117,8 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 		}
 		premiereCarteAffichee = false;
 		
-		larg = Math.max((pc.getWidth() + positionXCartePrec + (margeX * 2)), PCarte.largeur + (margeX * 2));
-		haut = Math.max((pc.getHeight() + positionYCartePrec + (margeY * 2)), PCarte.hauteur + (margeY * 2));
+		larg = Math.max((pc.getWidth() + positionXCartePrec + margeX), PCarte.largeur + margeX);
+		haut = Math.max((pc.getHeight() + positionYCartePrec + margeY), PCarte.hauteur + margeY);
 		
 		pc.setLocation(positionXCartePrec, positionYCartePrec);
 		pc.setVisible(true);
@@ -155,12 +155,15 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 	}
 
 	public void c2p_showEmpilable(){
+
 		setBorder(BORD_OK);
 	}
 	public void c2p_showNonEmpilable(){
+		
 		setBorder(BORD_KO);
 	}
 	public void c2p_showNeutre(){
+
 		setBorder(BORD_SANS);
 	}
 	
