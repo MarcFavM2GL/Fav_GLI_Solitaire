@@ -1,5 +1,2 @@
-ATTENTION !!!
-
-Il faut copier le répertoire 'ressources'
-dans le répertoire 'bin' pour que le jeu
-fonctionne correctement !!!
+Vous pouvez decompresser le dossier 'Solitaire_install.zip'
+et lancer : java -jar xxx/xxx/solitaire.jar
