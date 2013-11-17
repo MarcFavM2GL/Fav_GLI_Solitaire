@@ -58,7 +58,11 @@ public class CColonne extends Colonne{
 			empiler(tasDragger);
 		}else{
 			if(isCarteRetournable()){
-				presentation.activerRetournerCarteSurTasVis();
+				try {
+					retournerCarte();
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
 			}
 		}
 	}
@@ -66,7 +70,7 @@ public class CColonne extends Colonne{
 	@Override
 	public void retournerCarte() throws Exception {
 		super.retournerCarte();
-		presentation.desactiverRetournerCarteSurTasVis();
+		//presentation.desactiverRetournerCarteSurTasVis();
 	}
 	
 	public PColonne getPresentation(){

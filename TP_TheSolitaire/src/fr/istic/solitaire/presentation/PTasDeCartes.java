@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -35,6 +36,7 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 	
 	
 	protected ArrayList<PCarte> lstCarte;
+	JLabel texteFond;
 	
 	final Border BORD_NEUTRE = BorderFactory.createLineBorder(Color.GRAY, 3);
 	final Border BORD_OK = BorderFactory.createTitledBorder(
@@ -58,6 +60,13 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 		setPreferredSize (getSize ()) ;
 		setBorder(BORD_SANS);
 		lstCarte = new ArrayList<PCarte>();
+		
+		texteFond = new JLabel("poil");
+		this.add(texteFond,0);
+		texteFond.setVisible(true);
+		texteFond.setOpaque(true);
+		
+		
 	}
 	
 	public PTasDeCartes(CTasDeCartes ctrl) {		
@@ -147,6 +156,10 @@ public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
 		setPreferredSize (getSize ()) ;
 	}
 	
+	public void setTexteTasVide(String texte){
+		texteFond.setText(texte);
+		repaint();
+	}
 	
 	
 	public void setDxDy(int x, int y){

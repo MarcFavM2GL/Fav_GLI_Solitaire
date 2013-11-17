@@ -75,16 +75,9 @@ public class PColonne extends JPanel{
 		repaint();
 	}
 	
-	public void activerRetournerCarteSurTasVis(){
-		if(retCarteListen == null){
-			retCarteListen = new RetournerCarteColonneListener(monControle);
-		}
-		tasCartesVisibles.addMouseListener(retCarteListen);
-	}
-	
-	public void desactiverRetournerCarteSurTasVis(){
-		tasCartesVisibles.removeMouseListener(retCarteListen);
-	}
+//	public void desactiverRetournerCarteSurTasVis(){
+//		tasCartesVisibles.removeMouseListener(retCarteListen);
+//	}
 	
 	public void activerRetournerCarte(){
 		if(retCarteListen == null){

@@ -42,7 +42,7 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 	public void p2c_dragEnter(CTasDeCartes ctc){
 		
 		
-		if(isEmpilable(ctc) || isVide()){
+		if(isEmpilable(ctc)){
 			presentation.c2p_showEmpilable();
 		}else{
 			presentation.c2p_showNonEmpilable();
@@ -54,7 +54,7 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 	}
 	
 	public void p2c_drop(CTasDeCartes ctc){
-		if(isEmpilable(ctc) || isVide()){
+		if(isEmpilable(ctc)){
 			empiler(ctc);
 			presentation.c2p_dropOK();
 		}else{

@@ -64,6 +64,10 @@ public class PSabot extends JPanel{
 		tasCartesVisibles.setDxDy(20, 0);
 		tasCartesVisibles.setLocation(110, 10);;
 		tasCartesCachees.setLocation(10, 10);
+		tasCartesCachees.setBorder(tasCartesCachees.BORD_NEUTRE);
+		tasCartesCachees.setTexteTasVide("Cliquez ici");
+		
+		
 		//System.out.println("haut : " + tasCache.getHeight());
 		
 		/*
@@ -97,10 +101,12 @@ public class PSabot extends JPanel{
 	public void activerRetournerTas(){
 		RetTasListen = new RetournerTasSabotListener(monControle);
 		tasCartesCachees.addMouseListener(RetTasListen);
+		tasCartesCachees.setBackground (Color.green);
 	}
 	
 	public void desactiverRetournerTas(){
 		tasCartesCachees.removeMouseListener(RetTasListen);
+		tasCartesCachees.setBackground (Color.lightGray);
 	}
 
 	public void c2p_debutDragNDrop_NonOK(){
