@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import fr.istic.solitaire.controle.CTasDeCartesAlternees;
 
-public class PTasDeCartesAlternees extends PTasDeCartes implements IPTasDeCartes{
+public class PTasDeCartesAlternees extends PTasDeCartes {
 
 	DropTarget dropTarget;
 	CTasDeCartesAlternees monControle;

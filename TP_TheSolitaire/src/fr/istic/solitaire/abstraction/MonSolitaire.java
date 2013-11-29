@@ -1,41 +1,24 @@
 package fr.istic.solitaire.abstraction;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import javax.swing.border.Border;
-
-import solitaire.application.Colonne;
-import solitaire.application.Solitaire;
-import solitaire.application.TasDeCartesColorees;
 import solitaire.application.Usine;
-import fr.istic.solitaire.controle.CCarte;
-import fr.istic.solitaire.controle.CColonne;
-import fr.istic.solitaire.controle.CSabot;
-import fr.istic.solitaire.controle.CTasDeCartes;
-import fr.istic.solitaire.controle.CTasDeCartesColores;
+import fr.istic.solitaire.controle.CJeu;
 import fr.istic.solitaire.controle.CUsine;
 
-public class MonSolitaire extends Solitaire {
-	
-public MonSolitaire(String nom, Usine fabrique) {
-		super(nom, fabrique);
-	}
+
+public class MonSolitaire {
 
 public static void main(String[] args) {
 		
-		JFrame f = new JFrame ("THE 'Favereau-Solitaire'") ;
+	
+	CUsine maFactory = new CUsine();
+	CJeu ctrlJeu = new CJeu(maFactory);
+
+	ctrlJeu.initJeu();
+
+	
+		
+	/*
+	JFrame f = new JFrame ("THE 'Favereau-Solitaire'") ;
 		
 		JPanel pnl_haut = new JPanel();
 		JPanel pnl_bas = new JPanel();
@@ -69,7 +52,7 @@ public static void main(String[] args) {
 		pnl_haut_center.setBackground(couleur1);
 		
 		Usine factory = new CUsine();
-		MonSolitaire jeu = new MonSolitaire("moteurSolitaire", factory);
+		jeu = new MonSolitaire("moteurSolitaire", factory);
 		jeu.initialiser();
 		
 		pnl_haut_left.add(((CSabot)jeu.sabot).getPresentation());
@@ -91,5 +74,7 @@ public static void main(String[] args) {
 		f.setMinimumSize(new Dimension(775, 650));
 		f.setSize(775, 650);
 		f.setVisible(true);
+		
+		*/
 	}
 }

@@ -1,5 +1,8 @@
 package fr.istic.solitaire.controle;
 
+import javax.swing.JEditorPane;
+
+import fr.istic.solitaire.abstraction.MonSolitaire;
 import fr.istic.solitaire.presentation.PTasDeCartesColores;
 import solitaire.application.Carte;
 import solitaire.application.TasDeCartes;
@@ -26,6 +29,7 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 			super.empiler(c);
 			presentation.empiler(((CCarte)c).getPresentation());	
 		}
+		
 	}
 	
 	public void depiler() throws Exception{

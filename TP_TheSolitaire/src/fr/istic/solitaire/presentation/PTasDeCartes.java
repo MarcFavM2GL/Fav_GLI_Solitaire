@@ -22,7 +22,7 @@ import fr.istic.solitaire.controle.CTasDeCartes;
 import fr.istic.solitaire.controle.CTasDeCartesAlternees;
 import fr.istic.solitaire.controle.CTasDeCartesColores;
 
-public class PTasDeCartes extends JPanel implements IPTasDeCartes, Transferable{
+public class PTasDeCartes extends JPanel implements Transferable{
 
 	protected int decalX;
 	protected int decalY;

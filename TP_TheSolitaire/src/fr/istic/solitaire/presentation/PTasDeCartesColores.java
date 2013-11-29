@@ -28,7 +28,7 @@ import fr.istic.solitaire.presentation.PSabot.MyDragGestureListener;
 import fr.istic.solitaire.presentation.PSabot.MyDragSourceListener;
 import fr.istic.solitaire.presentation.PSabot.MyDragSourceMotionListener;
 
-public class PTasDeCartesColores extends PTasDeCartes implements IPTasDeCartes{
+public class PTasDeCartesColores extends PTasDeCartes {
 
 	DropTarget dropTarget;
 	CTasDeCartesColores monControle;
