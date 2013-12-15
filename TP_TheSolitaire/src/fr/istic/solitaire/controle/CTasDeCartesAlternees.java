@@ -3,10 +3,10 @@ package fr.istic.solitaire.controle;
 import fr.istic.solitaire.presentation.PTasDeCartesAlternees;
 import solitaire.application.Carte;
 import solitaire.application.Tas;
-import solitaire.application.TasDeCartes;
 import solitaire.application.TasDeCartesAlternees;
 import solitaire.application.Usine;
 
+//@description	Classe de controle du tas de cartes alternées
 public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 
 	private PTasDeCartesAlternees presentation;
@@ -40,8 +40,6 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 		}
 
 	public void p2c_dragEnter(CTasDeCartes ctc){
-		
-		
 		if(isEmpilable(ctc)){
 			presentation.c2p_showEmpilable();
 		}else{
@@ -61,6 +59,10 @@ public class CTasDeCartesAlternees extends TasDeCartesAlternees implements Tas {
 			presentation.c2p_dropNonOK();
 		}
 		presentation.c2p_showNeutre();
+	}
+	
+	public void activationInfosDrop(boolean val){
+		presentation.setInfosDropVisible(val);
 	}
 
 }

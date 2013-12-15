@@ -5,6 +5,7 @@ import solitaire.application.Carte;
 import solitaire.application.TasDeCartes;
 import solitaire.application.Usine;
 
+//@description	Classe de controle du tas de cartes
 public class CTasDeCartes extends TasDeCartes {
 	
 	private PTasDeCartes presentation;
@@ -12,7 +13,6 @@ public class CTasDeCartes extends TasDeCartes {
 	public CTasDeCartes(String nom, Usine factory) {
 		super(nom, factory);
 		presentation = new PTasDeCartes();
-		
 	}
 	
 	public CTasDeCartes(String nom, Usine factory, boolean avecCtrl) {
@@ -24,8 +24,6 @@ public class CTasDeCartes extends TasDeCartes {
 		}
 	}
 	
-	
-	
 	public PTasDeCartes getPresentation(){
 		return presentation;
 	}
@@ -33,17 +31,14 @@ public class CTasDeCartes extends TasDeCartes {
 	public void empiler(Carte c){
 		if(isEmpilable(c)){
 			super.empiler(c);
-				try {
-					if(c==getSommet()){
-						presentation.empiler(((CCarte)c).getPresentation());
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			try {
+				if(c==getSommet()){
+					presentation.empiler(((CCarte)c).getPresentation());
 				}
-	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
 	public void depiler() throws Exception{

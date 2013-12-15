@@ -1,12 +1,10 @@
 package fr.istic.solitaire.presentation;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Window;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.DragSourceDragEvent;
 import java.awt.dnd.DragSourceDropEvent;
@@ -22,7 +20,8 @@ import fr.istic.solitaire.controle.CCarte;
 import fr.istic.solitaire.controle.CSabot;
 import fr.istic.solitaire.controle.CTasDeCartes;
 
-
+//@description	Classe de présentation d'un sabot
+@SuppressWarnings("serial")
 public class PSabot extends JPanel{
 	
 	private PTasDeCartes tasCartesCachees, tasCartesVisibles;
@@ -54,34 +53,17 @@ public class PSabot extends JPanel{
 												new MyDragGestureListener());
 		myDsMl = new MyDragSourceMotionListener();
 		ds.addDragSourceMotionListener(myDsMl);
-		
-		
-		//tasCartesCachees.setBackground(Color.gray);
-		//tasCartesVisibles.setBackground(Color.YELLOW);
 
 		add(tasCartesCachees,0);
 		add(tasCartesVisibles,0);
 		tasCartesVisibles.setDxDy(20, 0);
 		tasCartesVisibles.setLocation(110, 10);;
 		tasCartesCachees.setLocation(10, 10);
-		tasCartesCachees.setBorder(tasCartesCachees.BORD_NEUTRE);
 		tasCartesCachees.setTexteTasVide("Cliquez ici");
-		
-		
-		//System.out.println("haut : " + tasCache.getHeight());
-		
-		/*
-		tasCartesCachees.setSize(100, 110); 
-		tasCartesCachees.setPreferredSize(tasCartesCachees.getSize());
-		tasCartesVisibles.setSize(950, 110);
-		tasCartesVisibles.setPreferredSize(tasCartesVisibles.getSize());
-		*/
 		
 		setSize (250,150);
 		setPreferredSize(getSize());
-		
 		setVisible(true);
-		
 	}
 	
 	public void initDecalageTasVisible(){
@@ -101,7 +83,6 @@ public class PSabot extends JPanel{
 	public void activerRetournerTas(){
 		RetTasListen = new RetournerTasSabotListener(monControle);
 		tasCartesCachees.addMouseListener(RetTasListen);
-		tasCartesCachees.setBackground (Color.green);
 	}
 	
 	public void desactiverRetournerTas(){
@@ -109,12 +90,7 @@ public class PSabot extends JPanel{
 		tasCartesCachees.setBackground (Color.lightGray);
 	}
 
-	public void c2p_debutDragNDrop_NonOK(){
-		
-	}
-	
 	public void c2p_debutDragNDrop_OK(CTasDeCartes ctc){
-		//Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
 						ctc.getPresentation(), 
 						myDsl);
@@ -134,8 +110,7 @@ public class PSabot extends JPanel{
 			tasCartesVisibles.repaint();
 		}
 	}
-	
-	
+		
 	class MyDragGestureListener implements DragGestureListener{
 
 		@Override

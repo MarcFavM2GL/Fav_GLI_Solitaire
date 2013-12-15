@@ -1,14 +1,11 @@
 package fr.istic.solitaire.controle;
 
-import javax.swing.JEditorPane;
-
-import fr.istic.solitaire.abstraction.MonSolitaire;
 import fr.istic.solitaire.presentation.PTasDeCartesColores;
 import solitaire.application.Carte;
-import solitaire.application.TasDeCartes;
 import solitaire.application.Usine;
 import solitaire.application.TasDeCartesColorees;
 
+//@description	Classe de controle du tas de cartes colorees
 public class CTasDeCartesColores extends TasDeCartesColorees {
 
 	private PTasDeCartesColores presentation;
@@ -56,7 +53,6 @@ public class CTasDeCartesColores extends TasDeCartesColorees {
 		}
 	}
 	
-
 	public void p2c_dragExit(){
 		presentation.c2p_showNeutre();
 	}

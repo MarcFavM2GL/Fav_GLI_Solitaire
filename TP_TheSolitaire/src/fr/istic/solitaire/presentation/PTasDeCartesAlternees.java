@@ -13,6 +13,8 @@ import java.io.IOException;
 
 import fr.istic.solitaire.controle.CTasDeCartesAlternees;
 
+//@description	Classe de présentation d'un tas de cartes alternées
+@SuppressWarnings("serial")
 public class PTasDeCartesAlternees extends PTasDeCartes {
 
 	DropTarget dropTarget;
@@ -24,25 +26,20 @@ public class PTasDeCartesAlternees extends PTasDeCartes {
 		monControle = ctrl;
 		setLayout (null) ;
 		setBackground (Color.lightGray) ;
-		
 		setOpaque (false);
-		//setSize (PCarte.largeur + 20,PCarte.hauteur + 20);
-		//setPreferredSize (getSize ()) ;
 		dropTarget = new DropTarget(this, new MyDropTargetListener());
 	}
 	
 	class MyDropTargetListener implements DropTargetListener{
 
-		//PCarte pc;
 		PTasDeCartes ptc;
-		//DropTargetDropEvent theFinalEvent;
 		
 		@Override
 		public void dragEnter(DropTargetDragEvent dtde) {
 			
 			try {
-				//pc = (PCarte) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
-				ptc = (PTasDeCartes) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
+				ptc = (PTasDeCartes) dtde.getTransferable().getTransferData(
+						new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
 				monControle.p2c_dragEnter(ptc.getControle());
 			} catch (UnsupportedFlavorException e) {
 				e.printStackTrace();
@@ -72,19 +69,11 @@ public class PTasDeCartesAlternees extends PTasDeCartes {
 		
 	}
 	
-	/*public void c2p_showEmpilable(){
-		setBackground (Color.green) ;
-	}
-	public void c2p_showNonEmpilable(){
-		setBackground (Color.red) ;
-	}
-	public void c2p_showNeutre(){
-		setBackground (Color.lightGray) ;
-	}*/
 	public void c2p_dropOK(){
 		theFinalEvent.acceptDrop(DnDConstants.ACTION_MOVE);
 		theFinalEvent.getDropTargetContext().dropComplete(true);
 	}
+	
 	public void c2p_dropNonOK(){
 		theFinalEvent.rejectDrop();
 	}

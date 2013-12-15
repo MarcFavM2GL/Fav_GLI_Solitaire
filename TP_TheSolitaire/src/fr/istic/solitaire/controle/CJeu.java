@@ -4,6 +4,7 @@ import fr.istic.solitaire.presentation.PJeu;
 import solitaire.application.Solitaire;
 import solitaire.application.Usine;
 
+//@description	Classe de controle du jeu
 public class CJeu extends Solitaire {
 
 	PJeu presentation;
@@ -16,13 +17,14 @@ public class CJeu extends Solitaire {
 	public void initJeu(){
 
 		initialiser();
-		
 		presentation.configSabot(this.sabot);
-		
 		presentation.configColonne(this.pilesAlternees);
-		
 		presentation.configTasCartesCol(this.pilesColorees);
 	}
 	
-	 
+	public void ReinitJeu(){
+		
+		presentation.removeAllComp();
+		 initJeu();
+	} 
 }

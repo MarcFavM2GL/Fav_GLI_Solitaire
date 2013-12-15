@@ -5,23 +5,19 @@ import java.awt.Container;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTargetDragEvent;
-import java.awt.dnd.DropTargetDropEvent;
-import java.awt.dnd.DropTargetEvent;
-import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import fr.istic.solitaire.controle.CTasDeCartes;
-import fr.istic.solitaire.controle.CTasDeCartesAlternees;
-import fr.istic.solitaire.controle.CTasDeCartesColores;
 
+//@description	Classe de présentation d'un tas de cartes
+@SuppressWarnings("serial")
 public class PTasDeCartes extends JPanel implements Transferable{
 
 	protected int decalX;
@@ -32,11 +28,11 @@ public class PTasDeCartes extends JPanel implements Transferable{
 	protected int positionYCartePrec = 0;
 	int margeX;
 	int margeY;
+	boolean infosDropVisible = true;
+	JLabel texteFond;
 	CTasDeCartes monControleTas;
 	
-	
 	protected ArrayList<PCarte> lstCarte;
-	JLabel texteFond;
 	
 	final Border BORD_NEUTRE = BorderFactory.createLineBorder(Color.GRAY, 3);
 	final Border BORD_OK = BorderFactory.createTitledBorder(
@@ -45,10 +41,8 @@ public class PTasDeCartes extends JPanel implements Transferable{
 			BorderFactory.createLineBorder(Color.RED, 3), "NON");
 	final Border BORD_SANS = BorderFactory.createEmptyBorder();
 	
-	
 	public PTasDeCartes() {
 		super();
-		
 		nbCarte = 0;
 		premiereCarteAffichee = true;
 		setMarges(5, 15);
@@ -61,17 +55,14 @@ public class PTasDeCartes extends JPanel implements Transferable{
 		setBorder(BORD_SANS);
 		lstCarte = new ArrayList<PCarte>();
 		
-		texteFond = new JLabel("poil");
+		texteFond = new JLabel("");
 		this.add(texteFond,0);
-		texteFond.setVisible(true);
+		texteFond.setVisible(false);
 		texteFond.setOpaque(true);
-		
-		
 	}
 	
 	public PTasDeCartes(CTasDeCartes ctrl) {		
 		super();
-		
 		monControleTas = ctrl;
 		nbCarte = 0;
 		premiereCarteAffichee = true;
@@ -158,6 +149,12 @@ public class PTasDeCartes extends JPanel implements Transferable{
 	
 	public void setTexteTasVide(String texte){
 		texteFond.setText(texte);
+		texteFond.setVisible(true);
+		texteFond.setLocation (5, 15) ;
+		texteFond.setSize (getWidth()-10,getHeight()-30) ;
+		texteFond.setBackground(this.getBackground());
+		texteFond.setHorizontalAlignment(SwingConstants.CENTER);
+		texteFond.setBorder(BORD_NEUTRE);
 		repaint();
 	}
 	
@@ -166,18 +163,29 @@ public class PTasDeCartes extends JPanel implements Transferable{
 		decalX = x;
 		decalY = y;
 	}
-
+	
 	public void c2p_showEmpilable(){
-
-		setBorder(BORD_OK);
+		if(infosDropVisible){
+			setBorder(BORD_OK);
+		}else{
+			setBorder(BORD_SANS);
+		}
 	}
+	
 	public void c2p_showNonEmpilable(){
-		
-		setBorder(BORD_KO);
+		if(infosDropVisible){
+			setBorder(BORD_KO);
+		}else{
+			setBorder(BORD_SANS);
+		}
 	}
 	public void c2p_showNeutre(){
 
 		setBorder(BORD_SANS);
+	}
+	
+	public void setInfosDropVisible(boolean val){
+		infosDropVisible = val;
 	}
 	
 	@Override

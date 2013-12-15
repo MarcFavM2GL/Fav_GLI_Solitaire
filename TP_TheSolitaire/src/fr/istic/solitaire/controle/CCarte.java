@@ -3,8 +3,10 @@ package fr.istic.solitaire.controle;
 import fr.istic.solitaire.presentation.PCarte;
 import solitaire.application.*;
 
+//@description	Classe de controle de la carte
 public class CCarte extends Carte{
 	private PCarte presentation;
+	
 	
 	public CCarte(int valeur, int couleur) {
 		super(Math.min(Math.max(1, valeur), 13),

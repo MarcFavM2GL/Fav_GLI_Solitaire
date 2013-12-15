@@ -10,13 +10,14 @@ import solitaire.application.TasDeCartesAlternees;
 import solitaire.application.TasDeCartesColorees;
 import solitaire.application.Usine;
 
-
+//@description	Classe de controle de l'usine
 public class CUsine extends Usine{
 	
 	@Override
 	public Solitaire newSolitaire(String nom, Usine factory){
 		return new CSolitaire(nom, factory);
 	}
+	
 	public Carte newCarte(int valeur, int couleur){
 		return new CCarte(valeur, couleur);
 	}

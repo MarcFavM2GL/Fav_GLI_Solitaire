@@ -1,20 +1,15 @@
 package fr.istic.solitaire.controle;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import fr.istic.solitaire.presentation.PColonne;
 import solitaire.application.Carte;
-import solitaire.application.Tas;
 import solitaire.application.Colonne;
-import solitaire.application.TasDeCartes;
-import solitaire.application.TasDeCartesAlternees;
 import solitaire.application.Usine;
 
+//@description	Classe de controle de la colonne
 public class CColonne extends Colonne{
 
 	PColonne presentation;
-	CCarte carteDragger;
 	CTasDeCartes tasDragger;
 	
 	public CColonne(String nom, Usine usine) {
@@ -25,7 +20,6 @@ public class CColonne extends Colonne{
 		
 		presentation.activerRetournerCarte();
 	}
-	
 	
 	public void p2c_debutDragNDrop(CCarte cc){
 		
@@ -46,7 +40,9 @@ public class CColonne extends Colonne{
 				tasDragger.empiler(listeCartesRecup.get(i));
 			}
 			
+			((CTasDeCartesAlternees)visibles).activationInfosDrop(false);
 			presentation.c2p_debutDragNDrop_OK(tasDragger);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,6 +50,7 @@ public class CColonne extends Colonne{
 	}
 	
 	public void p2c_endDragNDrop(boolean success){
+		((CTasDeCartesAlternees)visibles).activationInfosDrop(true);
 		if(!success){
 			empiler(tasDragger);
 		}else{

@@ -3,31 +3,15 @@ package fr.istic.solitaire.presentation;
 import java.awt.Color;
 import java.awt.Window;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragGestureEvent;
-import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragSource;
-import java.awt.dnd.DragSourceDragEvent;
-import java.awt.dnd.DragSourceDropEvent;
-import java.awt.dnd.DragSourceEvent;
-import java.awt.dnd.DragSourceListener;
-import java.awt.dnd.DragSourceMotionListener;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDragEvent;
-import java.awt.dnd.DropTargetDropEvent;
-import java.awt.dnd.DropTargetEvent;
-import java.awt.dnd.DropTargetListener;
+import java.awt.dnd.*;
 import java.io.IOException;
 
 import fr.istic.solitaire.controle.CCarte;
 import fr.istic.solitaire.controle.CTasDeCartes;
 import fr.istic.solitaire.controle.CTasDeCartesColores;
-import fr.istic.solitaire.presentation.PSabot.MyDragGestureListener;
-import fr.istic.solitaire.presentation.PSabot.MyDragSourceListener;
-import fr.istic.solitaire.presentation.PSabot.MyDragSourceMotionListener;
 
+@SuppressWarnings("serial")
 public class PTasDeCartesColores extends PTasDeCartes {
 
 	DropTarget dropTarget;
@@ -47,7 +31,6 @@ public class PTasDeCartesColores extends PTasDeCartes {
 		setLayout (null) ;
 		setBackground (Color.lightGray) ;
 		setOpaque (true);
-		//setSize (140,300);
 		setPreferredSize (getSize ()) ;
 		dropTarget = new DropTarget(this, new MyDropTargetListener());
 	
@@ -66,13 +49,11 @@ public class PTasDeCartesColores extends PTasDeCartes {
 
 		PCarte pc;
 		PTasDeCartes ptc;
-		//DropTargetDropEvent theFinalEvent;
 		
 		@Override
 		public void dragEnter(DropTargetDragEvent dtde) {
 			
 			try {
-				//pc = (PCarte) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
 				ptc = (PTasDeCartes) dtde.getTransferable().getTransferData(new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType));
 				monControle.p2c_dragEnter(ptc.getControle());
 			} catch (UnsupportedFlavorException e) {
@@ -103,19 +84,11 @@ public class PTasDeCartesColores extends PTasDeCartes {
 		
 	}
 	
-	/*public void c2p_showEmpilable(){
-		setBackground (Color.green) ;
-	}
-	public void c2p_showNonEmpilable(){
-		setBackground (Color.red) ;
-	}
-	public void c2p_showNeutre(){
-		setBackground (Color.lightGray) ;
-	}*/
 	public void c2p_dropOK(){
 		theFinalEvent.acceptDrop(DnDConstants.ACTION_MOVE);
 		theFinalEvent.getDropTargetContext().dropComplete(true);
 	}
+	
 	public void c2p_dropNonOK(){
 		theFinalEvent.rejectDrop();
 	}
@@ -125,7 +98,6 @@ public class PTasDeCartesColores extends PTasDeCartes {
 	}
 	
 	public void c2p_debutDragNDrop_OK(CTasDeCartes ctc){
-		//Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop, 
 						ctc.getPresentation(), 
 						myDsl);
@@ -134,7 +106,6 @@ public class PTasDeCartesColores extends PTasDeCartes {
 		valise.pack();valise.setVisible(true);
 		validate();
 		repaint();
-		
 	}
 	
 	class MyDragSourceListener implements DragSourceListener{
@@ -159,12 +130,11 @@ public class PTasDeCartesColores extends PTasDeCartes {
 		public void dropActionChanged(DragSourceDragEvent dsde) {}
 		}
 	
-
 	class MyDragSourceMotionListener implements DragSourceMotionListener{
 
 		@Override
 		public void dragMouseMoved(DragSourceDragEvent dsde) {	
-			valise.setLocation(1 + dsde.getX(), 1 + dsde.getY());
+			valise.setLocation(1 + dsde.getX() - (valise.getWidth() / 2), 1 + dsde.getY() - 10);
 			repaint();
 		}
 	}
@@ -189,8 +159,5 @@ public class PTasDeCartesColores extends PTasDeCartes {
 				monControle.p2c_debutDragNDrop(cc);	
 			}		
 		}
-	}
-	
-	
-	
+	}	
 }

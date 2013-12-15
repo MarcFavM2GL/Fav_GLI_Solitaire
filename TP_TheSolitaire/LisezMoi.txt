@@ -1,2 +1,17 @@
 Vous pouvez decompresser le dossier 'Solitaire_install.zip'
 et lancer : java -jar xxx/xxx/solitaire.jar
+
+vous trouverez également les sources de cette application sur :
+
+https://github.com/MarcFavM2GL/Fav_GLI_Solitaire
+
+La plus grande difficultée a été de placer la limite entre ce
+qui doit être fait du côté des controleurs et du côté des présentations.
+
+Je n'ai pas eu le temps de factoriser la gestion du DnD car ceci nécessité
+de reprendre toute la conception des classes TasDeCartes, TasDeCartesColorees
+et TasDeCartesAlternées.
+
+Seul les menus infos, quitter et rejouer ont été implantés.
+
+Il manque également l'infos de victoire. 

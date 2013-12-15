@@ -8,6 +8,7 @@ import solitaire.application.Sabot;
 import solitaire.application.Tas;
 import solitaire.application.Usine;
 
+//@description	Classe de controle du sabot
 public class CSabot extends Sabot{
 
 	PSabot presentation;
